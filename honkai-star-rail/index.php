@@ -7,12 +7,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rakushop Indonesia</title>
-    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="../output.css">
 </head>
 <body class="bg-[#280031]">
     <header class="w-full bg-[#3c1f42] flex justify-between items-center py-2 px-20">
         <a href="/">
-            <img src="assets/logo.png" class="w-40 h-fit">
+            <img src="../assets/logo.png" class="w-40 h-fit">
         </a>
         <div class="flex justify-center items-center">
             <input id="searchGame" class="bg-transparent focus:border-b-2 focus:outline-none text-white text-sm pb-1" type="text">
@@ -23,219 +23,129 @@
             </label>
         </div>
     </header>
-    <main class="h-full w-full text-white py-2 px-20">
-        <div class="flex w-[730px] h-[280px] mx-auto relative overflow-hidden">
-            <img src="https://cdn1.codashop.com/S/content/common/images/promos/dec23/ID_HSR-Version1-5_PhaseII-730x280.jpg" class="banner w-full h-full absolute transition">
-            <img src="https://cdn1.codashop.com/S/content/common/images/promos/dec23/ID_FC-Mobile-Silver-Star-Pass_730x280.jpg" class="banner w-full h-full absolute transition">
-            <img src="https://picsum.photos/id/237/730/280" class="banner w-full h-full absolute transition">
-            <img src="https://picsum.photos/id/238/730/280" class="banner w-full h-full absolute transition">
-        </div>
-        <div class="mt-1 flex justify-center gap-2">
-            <div class="cursor-pointer text-2xl text-white/70 hover:text-white" onclick="prev()">←</div>
-            <div class="cursor-pointer text-2xl text-white/70 hover:text-white" onclick="next()">→</div>
-        </div>
-        <section class="flex flex-col py-10">
-            <h1 class="uppercase text-3xl font-display mb-7">lebih mudah pakai rakushop</h1>
-            <div class="flex flex-wrap gap-3">
-                <a href="/honkai-star-rail" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/hsr_tile.jpg" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">Honkai: Star Rail</p>
-                    </div>
-                </a>
-                <a href="/mobile-legends" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/MLBB-Next-tile_sept23.jpg" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">Mobile Legends</p>
-                    </div>
-                </a>
-                <a href="/pubg-mobile" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/pubgm_rps_tile.jpg" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">PUBG MOBILE</p>
-                    </div>
-                </a>
-                <a href="/genshin-impact" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/genshinimpact_tile.jpg" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">Genshin Impact</p>
-                    </div>
-                </a>
-                <a href="/girls-connect-idle-rpg" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/girls_connect_tile.png" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">Girls Connect: Idle RPG</p>
-                    </div>
-                </a>
-                <a href="/stumble-guys" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/Stumble_Guys_Tile.png" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">Stumble Guys</p>
-                    </div>
-                </a>
-                <a href="/monster-saga-evolution" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/monster_saga_tile178.png" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">Monster Saga: Evolution</p>
-                    </div>
-                </a>
-                <a href="/diablo-immortal" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/diablo_tile.png" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">Diablo: Immortal</p>
-                    </div>
-                </a>
-                <a href="/echocalypse" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/echocalypse_tile.jpg" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">Echocalypse</p>
-                    </div>
-                </a>
-                <a href="/honkai-impact-3" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/honkai_new_tile.png" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">Honkai Impact 3</p>
-                    </div>
-                </a>
-                <a href="/one-punch-man-the-strongest" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/opm_new2_tile.png" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">ONE PUNCH MAN: The Strongest</p>
-                    </div>
-                </a>
-                <a href="/ragnarok-x-next-generation" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/ragnarok_x_tile.jpg" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">Ragnarok X: Next Generation</p>
-                    </div>
-                </a>
-                <a href="/top-eleven" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/topeleven_new_tile.jpeg" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">Top Eleven</p>
-                    </div>
-                </a>
-                <a href="/azurlane" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/azurlane_tile.png" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">Azurlane</p>
-                    </div>
-                </a>
-                <a href="/8-ball-pool" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/8_ball_pool_tile.jpg" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">8 Ball Pool</p>
-                    </div>
-                </a>
-                <a href="/bleach-mobile-3d" class="inline-flex hover:grayscale">
-                    <div class="h-[265px] w-[193px] bg-[#36213d] rounded-xl overflow-hidden">
-                        <img src="https://cdn1.codashop.com/S/content/mobile/images/product-tiles/bleach_tile.png" class="w-full object-cover ">
-                        <svg width="194" height="24" viewBox="0 0 194 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="-translate-y-[10px]">
-                        <path d="M0 0H13.5L28 5.5L43.5 0L59.5 7L71 2.5L93.5 5.5L111.5 2.5L128 10.5L149 0L176 5.5L194 0V24H0V0Z" fill="#36213D"/>
-                        </svg>
-                        <p class="flex justify-center font-semibold text-sm items-center w-40 -mt-2 mx-auto text-center">BLEACH Mobile 3D</p>
-                    </div>
-                </a>
+    <main class="flex h-full w-full text-white py-6 px-20">
+        <div class="w-[500px]">
+            <img src="https://cdn1.codashop.com/S/content/common/images/mno/HSR_product-page_banner_0425.jpg" width="450">
+            <h1 class="text-xl font-bold tracking-wide my-6">Honkai: Star Rail</h1>
+            <div class="flex gap-3">
+                <div class="flex items-center gap-2 bg-white py-1 px-4 rounded-full">
+                    <svg data-v-911ab42c="" width="27" height="27" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 7L13.3225 10.1797L16.7553 10.4549L14.1399 12.6953L14.9389 16.0451L12 14.25L9.06107 16.0451L9.86012 12.6953L7.24472 10.4549L10.6775 10.1797L12 7Z" stroke="#280031" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 3L18.364 5.63604L21 12L18.364 18.364L12 21L5.63604 18.364L3 12L5.63604 5.63604L12 3Z" stroke="#280031" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <small class="text-[#280031] font-semibold pb-[2.5px] leading-tight">Pembayaran yang Aman</small>
+                </div>
+                <div class="flex items-center gap-2 bg-white py-1 px-4 rounded-full">
+                    <svg data-v-9fe12e4e="" data-v-911ab42c="" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path data-v-9fe12e4e="" d="M19.3417 14.0068L20.6924 11.0156L17.8524 4.15845L10.9947 1.31781L4.13751 4.15845L1.29688 11.0156L4.13751 17.8727L10.9947 20.7134" stroke="#280031" stroke-linecap="round" stroke-linejoin="round"></path><path data-v-9fe12e4e="" d="M19.6502 8.93591H16.8859C16.3333 9.66561 16.0342 10.5559 16.0342 11.4713C16.0342 12.3866 16.3333 13.2769 16.8859 14.0066H19.2728" stroke="#280031" stroke-linecap="round" stroke-linejoin="round"></path><path data-v-9fe12e4e="" d="M2.41772 8.93591H5.18197C5.73463 9.66561 6.03373 10.5559 6.03373 11.4713C6.03373 12.3866 5.73463 13.2769 5.18197 14.0066H2.79516" stroke="#280031" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <small class="text-[#280031] font-semibold pb-[2.5px] leading-tight">Layanan Pelanggan 24/7</small>
+                </div>
             </div>
-        </section>
-        <section class="flex flex-col mt-20 py-10">
-            <h1 class="uppercase text-3xl font-display mb-1">rakushop</h1>
-            <b class="text-xl mb-4">Website top-up tercepat dan terpercaya di Indonesia</b>
-            <small>Setiap bulannya, jutaan gamers menggunakan Rakushop untuk melakukan pembelian kredit game dengan lancar: tanpa registrasi ataupun log-in, dan kredit permainan akan ditambahkan secara instan. Top-up Mobile Legends, Genshin Impact, PUBG Mobile, dan berbagai game lainnya!</small>
-            <div class="flex flex-wrap">
-                <div class="flex gap-4 w-[600px] mt-5 mr-5">
-                    <img src="https://cdn1.codashop.com/S/content/mobile/images/reskin/usp-icons/easy_and_fast_portal.png" class="w-16 h-fit bg-[#eae8f7] mt-1 p-3 rounded-2xl">
-                    <div class="flex flex-col gap-2">
-                        <b>Bayar dalam hitungan detik</b>
-                        <small>Hanya dibutuhkan beberapa detik saja untuk menyelesaikan pembayaran di Rakushop karena situs kami berfungsi dengan baik dan mudah untuk digunakan.</small>
-                    </div>
+            <div class="text-sm my-4">
+                <b>Cara membeli Oneiric Shards</b>
+                <p class="mt-2">1. Masuk ke website Rakushop dan pilih Honkai Star Rail.</p>
+                <p>2. Masukkan User ID mu dan pilih Server</p>
+                <p>3. Pilih jumlah Oneiric Shards yang ingin kamu beli</p>
+                <p>4. Pilih e-wallet yang kamu pakai</p>
+                <p>5. Selesaikan transaksi dan Oneiric Shards akan langsung dikirimkan ke akun Honkai: Star Rail kamu.</p>
+                <p class="mt-2">Kamu juga bisa mengirim Oneiric Shards ke teman atau kerabat dengan memasukkan user ID dan nama Server mereka</p>
+            </div>
+        </div>
+        <div>
+            <div class="bg-white text-black rounded-lg p-2 mt-10">
+                <div class="flex">
+                    <div class="bg-[#6242fc] border-4 border-white text-white rounded-full py-2 px-4 font-bold -translate-y-7">1</div>
+                    <h1 class="font-bold text-lg">Masukkan User ID dan Nama Server</h1>
                 </div>
-                <div class="flex gap-4 w-[600px] mt-5 mr-5">
-                    <img src="https://cdn1.codashop.com/S/content/mobile/images/reskin/usp-icons/instant_delivery_portal.png" class="w-16 h-fit bg-[#eae8f7] mt-1 p-3 rounded-2xl">
-                    <div class="flex flex-col gap-2">
-                        <b>Pengiriman instan</b>
-                        <small>Ketika kamu melakukan top-up di Rakushop, item atau barang yang kamu beli akan selalu dikirim ke akun kamu secara instan dan cepat, tanpa tertunda.</small>
-                    </div>
+                <div class="flex gap-3 ml-4">
+                    <input type="text" class="border border-zinc-400 text-center p-2 rounded-lg" placeholder="Masukkan User ID">
+                    <select name="" id="" class="border border-zinc-400 text-center py-2 px-10 rounded-lg">
+                        <option>Pilih Server</option>
+                        <option value="">Asia</option>
+                        <option value="">Asia</option>
+                        <option value="">Asia</option>
+                        <option value="">Asia</option>
+                    </select>
                 </div>
-                <div class="flex gap-4 w-[600px] mt-5 mr-5">
-                    <img src="https://cdn1.codashop.com/S/content/mobile/images/reskin/usp-icons/payment_method_portal.png" class="w-16 h-fit bg-[#eae8f7] mt-1 p-3 rounded-2xl">
-                    <div class="flex flex-col gap-2">
-                        <b>Metode pembayaran e-wallet</b>
-                        <small>Kami menawarkan pilihan pembayaran mulai dari GOPAY, DANA, QRIS, dan lainnya.</small>
-                    </div>
+                <div class="ml-4 mt-2 mb-2 italic text-[10px]">Untuk menemukan UID Anda, masuk ke akun di aplikasi Anda. UID selalu berada di pojok kiri bawah layar. UID juga dapat ditemukan di Phone Menu.</div>
+            </div>
+            <div class="bg-white text-black rounded-lg p-2 mt-10">
+                <div class="flex">
+                    <div class="bg-[#6242fc] border-4 border-white text-white rounded-full py-2 px-4 font-bold -translate-y-7">2</div>
+                    <h1 class="font-bold text-lg">Pilih Nominal Top Up</h1>
                 </div>
-                <div class="flex gap-4 w-[600px] mt-5 mr-5">
-                    <img src="https://cdn1.codashop.com/S/content/mobile/images/reskin/usp-icons/customer_support_portal.png" class="w-16 h-fit bg-[#eae8f7] mt-1 p-3 rounded-2xl">
-                    <div class="flex flex-col gap-2">
-                        <b>Layanan Pelanggan Cepat & Ramah</b>
-                        <small>Tim CS terbaik kami selalu siap membantumu kapanpun, di manapun. <a href="" class="underline text-[#e8f953]">Hubungi kami!</a></small>
+                <div class="flex flex-wrap gap-3 ml-4">
+                    <div class="flex flex-col justify-center items-center border rounded-lg p-4">
+                        <img src="https://cdn1.codashop.com/S/content/common/images/denom-image/HONKAI_STAR_RAIL/Honkai_Star_Rail_60.png" width="100">
+                        <b class="w-28 text-center">60 Oneiric Shard</b>
+                        <small class="text-red-500">Rp. 14.414</small>
                     </div>
-                </div>
-                <div class="flex gap-4 w-[600px] mt-5 mr-5">
-                    <img src="https://cdn1.codashop.com/S/content/mobile/images/reskin/usp-icons/promotion_portal.png" class="w-16 h-fit bg-[#eae8f7] mt-1 p-3 rounded-2xl">
-                    <div class="flex flex-col gap-2">
-                        <b>Hemat biaya transaksi</b>
-                        <small>Rakushop tidak mengenakan biaya tambahan untuk setiap transaksi top up. Total tagihan yang tertera adalah total yang harus kamu bayarkan.</small>
+                    <div class="flex flex-col justify-center items-center border rounded-lg p-4">
+                        <img src="https://cdn1.codashop.com/S/content/common/images/denom-image/HONKAI_STAR_RAIL/Honkai_Star_Rail_300.png" width="100">
+                        <b class="w-28 text-center">300+30 Oneiric Shard</b>
+                        <small class="text-red-500">Rp. 71.717</small>
                     </div>
-                </div>
-                <div class="flex gap-4 w-[600px] mt-5 mr-5">
-                    <img src="https://cdn1.codashop.com/S/content/mobile/images/reskin/usp-icons/referral_usp.png" class="w-16 h-fit bg-[#eae8f7] mt-1 p-3 rounded-2xl">
-                    <div class="flex flex-col gap-2">
-                        <b>Aman dan terjamin</b>
-                        <small>Data pribadi dan informasi pembayaran dilindungi dengan keamanan tingkat tinggi. Rakushop menjamin kerahasiaan data pengguna.</small>
+                    <div class="flex flex-col justify-center items-center border rounded-lg p-4">
+                        <img src="https://cdn1.codashop.com/S/content/common/images/denom-image/HONKAI_STAR_RAIL/Honkai_Star_Rail_980.png" width="100">
+                        <b class="w-28 text-center">980+110 Oneiric Shard</b>
+                        <small class="text-red-500">Rp. 224.324</small>
+                    </div>
+                    <div class="flex flex-col justify-center items-center border rounded-lg p-4">
+                        <img src="https://cdn1.codashop.com/S/content/common/images/denom-image/HONKAI_STAR_RAIL/Honkai_Star_Rail_1980.png" width="100">
+                        <b class="w-28 text-center">1980+260 Oneiric Shard</b>
+                        <small class="text-red-500">Rp. 431.532</small>
+                    </div>
+                    <div class="flex flex-col justify-center items-center border rounded-lg p-4 mb-2">
+                        <img src="https://cdn1.codashop.com/S/content/common/images/denom-image/HONKAI_STAR_RAIL/Honkai_Star_Rail_6480.png" width="100">
+                        <b class="w-28 text-center">6480+1600 Oneiric Shard</b>
+                        <small class="text-red-500">Rp. 1.440.541</small>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="bg-white text-black rounded-lg p-2 mt-10 pr-4">
+                <div class="flex">
+                    <div class="bg-[#6242fc] border-4 border-white text-white rounded-full py-2 px-4 font-bold -translate-y-7">3</div>
+                    <h1 class="font-bold text-lg">Pilih E-Wallet</h1>
+                </div>
+                <div class="flex flex-col gap-3 ml-4">
+                    <div class="flex justify-between items-center border rounded-lg p-4">
+                        <img src="https://cdn1.codashop.com/S/content/common/images/mno/GO_PAY_CHNL_LOGO.png" class="h-7">
+                        <small class="hidden text-red-500">Rp. 14.414</small>
+                    </div>
+                    <div class="flex justify-between items-center border rounded-lg p-4">
+                        <img src="https://cdn1.codashop.com/S/content/common/images/mno/DANA_CHNL_LOGO.png" class="h-7">
+                        <small class="hidden text-red-500">Rp. 14.414</small>
+                    </div>
+                    <div class="flex justify-between items-center border rounded-lg p-4">
+                        <img src="https://cdn1.codashop.com/S/content/common/images/mno/QRIS_ID_CHNL_LOGO.png" class="h-7">
+                        <small class="hidden text-red-500">Rp. 14.414</small>
+                    </div>
+                    <div class="flex justify-between items-center border rounded-lg p-4">
+                        <img src="https://cdn1.codashop.com/S/content/common/images/mno/OVO_CHNL_LOGO.png" class="h-7">
+                        <small class="hidden text-red-500">Rp. 14.414</small>
+                    </div>
+                    <div class="flex justify-between items-center border rounded-lg p-4 mb-2">
+                        <img src="https://cdn1.codashop.com/S/content/common/images/mno/LINKAJA_ID_CHNL_LOGO.png" class="h-7">
+                        <small class="hidden text-red-500">Rp. 14.414</small>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white text-black rounded-lg p-2 mt-10 pr-4">
+                <div class="flex">
+                    <div class="bg-[#6242fc] border-4 border-white text-white rounded-full py-2 px-4 font-bold -translate-y-7">4</div>
+                    <h1 class="font-bold text-lg">Masukkan Detail Anda</h1>
+                </div>
+                <div class="ml-4">
+                    <div class="text-sm mb-2 font-semibold">Silahkan masukkan email Anda untuk menerima bukti pembelian Anda</div>
+                    <input type="text" class="border border-zinc-400 w-full p-2 rounded-lg" placeholder="Alamat email">
+                </div>
+                <div class="flex justify-end mb-2">
+                    <a href="../pembayaran.php">
+                    <input type="submit" value="Beli Sekarang" class="bg-[#6343fc] py-2 px-10 rounded-full text-white font-semibold mt-6 cursor-pointer hover:bg-[#4e31da]">
+                    </a>
+                </div>
+            </div>
+        </div>
     </main>
     <footer class="w-full h-fit">
         <div class="bg-[#e8f953] flex justify-between items-center p-20">
-            <img src="assets/logo-black.png" class="w-44 h-fit">
+            <img src="../assets/logo-black.png" class="w-44 h-fit">
             <div class="flex gap-10">
                 <div class="">
                     <p class="text-lg font-semibold mb-2">Butuh Bantuan?</p>
@@ -285,32 +195,4 @@
         </div>
     </footer>
 </body>
-<script>
-    const banners = document.querySelectorAll('.banner');
-    var counter = 0;
-    banners.forEach((banner, index) => {
-        banner.style.left = `${index * 100}%`;
-    });
-    const prev = () => {
-        if(counter <= 0) return;
-        counter--;
-        bannerImage();
-    }
-    const next = () => {
-        if(counter >= banners.length - 1) {
-            counter = 0;
-        } else {
-            counter++;
-        }
-        bannerImage();
-    }
-    const bannerImage = () => {
-        banners.forEach(banner => {
-            banner.style.transform = `translateX(-${counter * 100}%)`;
-        });
-    }
-    setInterval(() => {
-        next();
-    }, 5000);
-</script>
 </html>

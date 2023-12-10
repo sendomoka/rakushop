@@ -20,3 +20,8 @@
 .font-display {
     font-family: 'Titan One', sans-serif;
 }
+header {
+    outline-width: 1px;
+    outline-style: solid;
+    outline-color: #583a63;
+}
