@@ -8,8 +8,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rakushop Indonesia</title>
     <link rel="stylesheet" href="../output.css">
+    <link rel="shortcut icon" href="../assets/favicon.svg" type="image/x-icon">
 </head>
 <body class="bg-[#280031]">
+    <div id="popup" class="hidden w-screen h-screen justify-center items-center bg-black/40 fixed z-10">
+        <div class="w-fit flex flex-col bg-white text-[#44214c]">
+            <div class="bg-[#280031] w-full h-fit text-white font-bold text-xl py-2 pl-4 pr-80">Detail Pesanan</div>
+            <div class="py-2 pl-4">
+                <p class="opacity-75">Mohon konfirmasi Username anda sudah benar.</p><br>
+                <table>
+                    <tr>
+                        <td class="opacity-75">Nickname:</td>
+                        <td class="pl-8">g*******a</td>
+                    </tr>
+                    <tr>
+                        <td class="opacity-75">User ID:</td>
+                        <td class="pl-8">808897256(Asia)</td>
+                    </tr>
+                    <tr>
+                        <td class="opacity-75">Harga:</td>
+                        <td class="pl-8">Rp. 14.414</td>
+                    </tr>
+                    <tr>
+                        <td class="opacity-75">Tax(11.0%):</td>
+                        <td class="pl-8">Rp. 1.586</td>
+                    </tr>
+                    <tr>
+                        <td class="opacity-75">Bayar dengan:</td>
+                        <td class="pl-8">Dana</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">Total Pembayaran:</td>
+                        <td class="pl-8 text-lg font-semibold text-red-400">Rp. 16.000</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="pl-8">
+                            <button id="cancel" class="bg-zinc-400 py-2 px-10 rounded-full text-white font-semibold mt-6 cursor-pointer hover:bg-zinc-500">Batal</button>
+                            <button id="confirm" onclick="confirmPopup()" class="bg-[#6343fc] py-2 px-10 rounded-full text-white font-semibold mt-6 cursor-pointer hover:bg-[#4e31da]">Konfirmasi</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="redirect" class="hidden w-screen h-screen justify-center items-center bg-black/40 fixed z-10">
+        <div class="w-fit flex flex-col bg-[#280031] text-white">
+            <div class="bg-[#eae8f7] w-full h-fit text-white font-bold text-xl py-2 pl-4 pr-80">
+                <img src="../assets/logo-black.png" width="100">
+            </div>
+            <div class="py-2 pl-4">
+                <p class="opacity-75">Pembelian Anda</p><br>
+                <button id="confirm" onclick="redirectDana()" class="bg-[#6343fc] py-2 px-10 rounded-full text-white font-semibold mt-6 cursor-pointer hover:bg-[#4e31da]">Lanjutkan</button>
+            </div>
+        </div>
+    </div>
     <header class="w-full bg-[#3c1f42] flex justify-between items-center py-2 px-20">
         <a href="/">
             <img src="../assets/logo.png" class="w-40 h-fit">
@@ -136,9 +189,7 @@
                     <input type="text" class="border border-zinc-400 w-full p-2 rounded-lg" placeholder="Alamat email">
                 </div>
                 <div class="flex justify-end mb-2">
-                    <a href="../pembayaran.php">
-                    <input type="submit" value="Beli Sekarang" class="bg-[#6343fc] py-2 px-10 rounded-full text-white font-semibold mt-6 cursor-pointer hover:bg-[#4e31da]">
-                    </a>
+                    <input type="submit" id="submit" value="Beli Sekarang" class="bg-[#6343fc] py-2 px-10 rounded-full text-white font-semibold mt-6 cursor-pointer hover:bg-[#4e31da]">
                 </div>
             </div>
         </div>
@@ -149,7 +200,7 @@
             <div class="flex gap-10">
                 <div class="">
                     <p class="text-lg font-semibold mb-2">Butuh Bantuan?</p>
-                    <a href="">
+                    <a href="../bantuan.php">
                         <div class="flex justify-center items-center gap-2 bg-black/25 p-2 rounded-lg">
                             <svg data-v-6bb89cda="" data-v-7c4b9a2a="" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path data-v-6bb89cda="" d="M2.69368 4.75517C3.18309 4.66659 3.83299 4.66659 4.8149 4.66659H5.85193C7.30392 4.66659 8.02992 4.66659 8.5845 4.95301C9.07233 5.20496 9.46895 5.60699 9.71751 6.10146C10.0001 6.66361 10.0001 7.3995 10.0001 8.87129V10.2898C10.0001 10.4367 10.0001 10.5102 9.99718 10.5723C9.95029 11.5763 9.35044 12.4314 8.49879 12.8323M2.69368 4.75517C2.45939 4.79757 2.26187 4.86028 2.08233 4.95301C1.5945 5.20496 1.19788 5.60699 0.949324 6.10146C0.666748 6.66361 0.666748 7.3995 0.666748 8.87129V11.0937C0.666748 12.1885 1.54233 13.076 2.62242 13.076H2.93444C3.33842 13.076 3.61466 13.4896 3.46462 13.8698C3.25282 14.4065 3.86264 14.8917 4.3267 14.5557L5.68042 13.5756C5.69422 13.5656 5.70113 13.5606 5.70791 13.5557C6.14036 13.2469 6.65567 13.0795 7.18469 13.076C7.19299 13.076 7.20406 13.076 7.22619 13.076C7.38795 13.076 7.46882 13.076 7.53009 13.073C7.87505 13.0565 8.20219 12.972 8.49879 12.8323M2.69368 4.75517C2.73086 4.05439 2.81937 3.56678 3.03006 3.15328C3.34964 2.52608 3.85957 2.01614 4.48678 1.69656C5.19982 1.33325 6.13324 1.33325 8.00008 1.33325H9.33341C11.2003 1.33325 12.1337 1.33325 12.8467 1.69656C13.4739 2.01614 13.9839 2.52608 14.3034 3.15328C14.6667 3.86632 14.6667 4.79974 14.6667 6.66659V9.48548C14.6667 10.8742 13.541 11.9999 12.1523 11.9999H11.7511C11.2317 11.9999 10.8766 12.5245 11.0695 13.0068C11.3418 13.6875 10.5578 14.303 9.9611 13.8768L8.49879 12.8323" stroke="#280031"></path><path data-v-6bb89cda="" d="M4.00008 9.33341C4.00008 9.7016 3.7016 10.0001 3.33341 10.0001C2.96522 10.0001 2.66675 9.7016 2.66675 9.33341C2.66675 8.96522 2.96522 8.66675 3.33341 8.66675C3.7016 8.66675 4.00008 8.96522 4.00008 9.33341Z" fill="#280031"></path><path data-v-6bb89cda="" d="M6.00008 9.33341C6.00008 9.7016 5.7016 10.0001 5.33341 10.0001C4.96522 10.0001 4.66675 9.7016 4.66675 9.33341C4.66675 8.96522 4.96522 8.66675 5.33341 8.66675C5.7016 8.66675 6.00008 8.96522 6.00008 9.33341Z" fill="#280031"></path><path data-v-6bb89cda="" d="M8.00008 9.33341C8.00008 9.7016 7.7016 10.0001 7.33342 10.0001C6.96523 10.0001 6.66675 9.7016 6.66675 9.33341C6.66675 8.96522 6.96523 8.66675 7.33342 8.66675C7.7016 8.66675 8.00008 8.96522 8.00008 9.33341Z" fill="#280031"></path></svg>
                             Hubungi Kami
@@ -195,4 +246,27 @@
         </div>
     </footer>
 </body>
+<script>
+    const submit = document.getElementById('submit');
+    const popup = document.getElementById('popup');
+    const cancel = document.getElementById('cancel');
+    submit.addEventListener('click', () => {
+        popup.style.display = 'flex';
+    });
+    cancel.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
+    window.addEventListener('click', (e) => {
+        if (e.target == popup) {
+            popup.style.display = 'none';
+        }
+    });
+    function confirmPopup() {
+        document.getElementById("popup").style.display = "none";
+        document.getElementById("redirect").style.display = "flex";
+    }
+    function redirectDana() {
+        window.location.href = "dana1.php";
+    }
+</script>
 </html>
