@@ -1,0 +1,91 @@
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+    justify-content: center;
+    align-items: center;
+}
+td {
+    padding: 2px 10px;
+}
+td:last-child {
+    color: gold;
+}
+td#price {
+    color: pink;
+    font-weight: bold;
+}
+h2 {
+    margin-left: 100px;
+}
+a, input[type='submit'] {
+    padding: 10px 100px;
+    border-radius: 10px;
+    border: none;
+    background-color: #6242fc;
+    color: white;
+    cursor: pointer;
+    margin-left: 30px;
+}
+a:hover, input[type='submit']:hover {
+    background-color: #8269ff;
+}
+table {
+    margin: 20px;
+}
+td {
+    text-transform: uppercase;
+}
+#phone_number_box {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: black;
+    padding: 5px 10px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#phone_number_box input {
+    border: none;
+    font-size: 16px;
+    width: 200px;
+}
+#pin_box {
+    --width: 296px;
+    --height: 74px;
+    --spacing: 47px;
+    
+    display: inline-block;
+    position: relative;
+    width: var(--width);
+    height: var(--height);
+    background-image: url(https://i.stack.imgur.com/JbkZl.png); 
+}
+#pin_box input {
+    position: absolute;
+    padding-left: 21px;
+    font-family: courier, monospaced;
+    font-size: var(--spacing);
+    height: var(--height);
+    letter-spacing: var(--spacing);
+    background-color: transparent;
+    border: 0;
+    outline: none;
+    clip: rect(0px, calc(var(--width) - 21px), var(--height), 0px);
+}
+#payment {
+    margin-left: 200px;
+}
+input[type='submit'] {
+    padding: 10px 220px;
+}

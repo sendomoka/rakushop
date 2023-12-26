@@ -28,6 +28,15 @@
         </div>
     </div>
     <div class="copyright">
+        <div class="mitra-box">
+            <?php
+                $sqlm = "SELECT * FROM mitras";
+                $querym = mysqli_query($conn, $sqlm);
+                while($row = mysqli_fetch_array($querym)){
+                    echo "<img src='assets/images/mitras/$row[image]' alt='mitra'>";
+                }
+            ?>
+        </div>
         <small>Hak Cipta © 2023 Raku Pte. Ltd.</small>
     </div>
 </footer>

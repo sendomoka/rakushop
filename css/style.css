@@ -41,6 +41,9 @@ h1 {
 small {
     font-weight: 300;
 }
+label {
+    cursor: pointer;
+}
 
 /* header */
 header {
@@ -160,4 +163,18 @@ footer .copyright {
 footer small {
     font-size: 12px;
     font-weight: 300;
+}
+
+/* mitra */
+.mitra-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px 0;
+}
+.mitra-box img {
+    width: auto;
+    height: 40px;
 }
