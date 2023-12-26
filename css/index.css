@@ -1,0 +1,101 @@
+/* banner */
+.banner-place {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.banner-box {
+    display: inline-flex;
+    width: fit-content;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+}
+img[alt='banner'] {
+    height: 250px;
+}
+.banner-dot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dot {
+    padding: 3px;
+    color: #909090;
+    font-size: larger;
+    cursor: pointer;
+}
+.dot.active {
+    color: white;
+}
+
+/* games */
+img[alt='game'] {
+    width: 200px;
+    height: auto;
+}
+.games-box {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.games-box .game-card {
+    width: 200px;
+    height: 250px;
+    background-color: #0000005e;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.games-box .game-card:hover {
+    scale: 1.1;
+}
+.game-card p {
+    text-align: center;
+    transform: translateY(10px);
+}
+
+/* about */
+.about-box {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.about-box .subtitle {
+    margin-bottom: -10px;
+}
+.about-box .about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.about-grid .about-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.about-item .about-img {
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about-item .about-img i {
+    color: #6242fc;
+    font-size: 30px;
+    padding: 14px;
+}
+.about-item .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
