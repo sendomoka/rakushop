@@ -1,0 +1,15 @@
+input[type='submit'] {
+    background-color: #8269ff;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+input[type='submit']:hover {
+    background-color: #6242fc;
+}
+td {
+    padding: 10px 0;
+}

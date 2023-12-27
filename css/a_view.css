@@ -1,0 +1,75 @@
+body {
+    overflow: hidden;
+}
+.plus {
+    background-color: rgb(0, 103, 22);
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-right: 5px;
+}
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+table, th, td {
+    border: 1px solid black;
+}
+th, td {
+    padding: 10px;
+}
+th {
+    background-color: #6242fc;
+    color: white;
+}
+td {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.305);
+}
+tr:hover {
+    background-color: #000000;
+}
+td:first-child {
+    width: 50px;
+}
+td:last-child {
+    width: 150px;
+}
+td a i {
+    font-size: large;
+}
+td a i.fa-edit {
+    color: #ebeb24;
+    margin-right: 10px;
+}
+td a i.fa-edit:hover {
+    color: #8e8e10;
+}
+td a i.fa-trash {
+    color: #eb2424;
+}
+td a i.fa-trash:hover {
+    color: #8e1010;
+}
+td img {
+    width: auto;
+    height: 100px;
+}
+img[alt='ewallet'] {
+    width: 100px;
+    height: auto;
+}

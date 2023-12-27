@@ -6,17 +6,49 @@ if(!isset($_SESSION['email'])){
     header("Location: ../login.php");
     exit();
 }
+$current_page = basename($_SERVER['PHP_SELF']);
+$current_page = str_replace('.php', '', $current_page);
+$title = ucwords(str_replace('_', ' ', $current_page));
+
+if(isset($_POST['submit'])){
+    $image = $_FILES['image']['name'];
+    $image_tmp = $_FILES['image']['tmp_name'];
+    $image_size = $_FILES['image']['size'];
+    $image_error = $_FILES['image']['error'];
+    $image_type = $_FILES['image']['type'];
+    $image_ext = strtolower(end(explode('.', $image)));
+    $extensions = ['jpg', 'jpeg', 'png'];
+
+    if(in_array($image_ext, $extensions)){
+        if($image_error === 0){
+            $image_name = uniqid('banner_', true) . '.' . $image_ext;
+            move_uploaded_file($image_tmp, '../assets/images/banner/' . $image_name);
+            $sql = "INSERT INTO banners (image) VALUES ('$image_name')";
+            $query = mysqli_query($conn, $sql);
+            if($query){
+                header("Location: banners.php");
+                exit();
+            }else{
+                echo "<script>alert('Insert failed!')</script>";
+            }
+        }else{
+            echo "<script>alert('Image error!')</script>";
+        }
+    }else{
+        echo "<script>alert('Image type not allowed!')</script>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Rakushop Indonesia</title>
+    <title><?= $title ?> Insert | Rakushop Indonesia</title>
     <link rel="shortcut icon" href="../assets/icons/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/a_dashboard.css">
+    <link rel="stylesheet" href="../css/a_insert.css">
     <script src="https://kit.fontawesome.com/d9b2e6872d.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -27,7 +59,7 @@ if(!isset($_SESSION['email'])){
                 <i class="fas fa-tachometer-alt"></i>
                 Dashboard
             </a>
-            <a href="banners.php" <?= basename($_SERVER['PHP_SELF']) == 'banners.php' ? 'class="active"' : ''; ?>>
+            <a href="banners.php" class="active">
                 <i class="fas fa-image"></i>
                 Banners
             </a>
@@ -57,25 +89,19 @@ if(!isset($_SESSION['email'])){
             </a>
         </div>
         <div class="right">
-            <h2>Dashboard</h2>
-            <div class="cards">
-                <div class="card">
-                    <h3>Users</h3>
-                    <h1><?= mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users")) ?></h1>
-                </div>
-                <div class="card">
-                    <h3>Games</h3>
-                    <h1><?= mysqli_num_rows(mysqli_query($conn, "SELECT * FROM games")) ?></h1>
-                </div>
-                <div class="card">
-                    <h3>Orders</h3>
-                    <h1><?= mysqli_num_rows(mysqli_query($conn, "SELECT * FROM orders")) ?></h1>
-                </div>
-                <div class="card">
-                    <h3>E-Wallets</h3>
-                    <h1><?= mysqli_num_rows(mysqli_query($conn, "SELECT * FROM ewallets")) ?></h1>
-                </div>
-            </div>
+            <h2>Banners Insert</h2>
+            <form action="" method="post" enctype="multipart/form-data">
+                <table>
+                    <tr>
+                        <td>Image</td>
+                        <td>:</td>
+                        <td><input type="file" name="image" id="image" accept="image/*" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><input type="submit" name="submit" value="Insert"></td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </main>
     <?php include '../components/admin_footer.php' ?>

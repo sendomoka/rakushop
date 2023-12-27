@@ -1,0 +1,1 @@
+<footer>Hak Cipta © 2023 Raku Pte. Ltd.</footer>

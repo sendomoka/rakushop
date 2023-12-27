@@ -1,0 +1,17 @@
+.right .cards {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+    justify-content: space-between;
+}
+.right .cards .card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #3c1f42;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

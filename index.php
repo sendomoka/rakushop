@@ -1,8 +1,6 @@
 <?php
 session_start();
 include 'config/connect.php';
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
