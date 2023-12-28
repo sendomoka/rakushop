@@ -54,7 +54,6 @@ footer {
 }
 .left a[href="logout.php"] {
     background-color: #7d00002e;
-    margin-top: 90px;
 }
 .left a[href="logout.php"]:hover {
     background-color: #7d0000;

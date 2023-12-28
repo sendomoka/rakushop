@@ -6,27 +6,25 @@ if(!isset($_SESSION['email'])){
     header("Location: ../login.php");
     exit();
 }
-$current_page = basename($_SERVER['PHP_SELF']);
-$current_page = str_replace('.php', '', $current_page);
-$title = ucwords(str_replace('_', ' ', $current_page));
 
 if(isset($_POST['submit'])){
-    $image = $_FILES['image']['name'];
-    $image_tmp = $_FILES['image']['tmp_name'];
-    $image_size = $_FILES['image']['size'];
-    $image_error = $_FILES['image']['error'];
-    $image_type = $_FILES['image']['type'];
-    $image_ext = strtolower(end(explode('.', $image)));
+    $name = $_POST['name'];
+    $country = $_POST['country'];
+    $image_mitra = $_FILES['image_mitra']['name'];
+    $image_mitra_tmp = $_FILES['image_mitra']['tmp_name'];
+    $image_mitra_size = $_FILES['image_mitra']['size'];
+    $image_mitra_error = $_FILES['image_mitra']['error'];
+    $image_mitra_type = $_FILES['image_mitra']['type'];
+    $image_mitra_ext = strtolower(end(explode('.', $image_mitra)));
     $extensions = ['jpg', 'jpeg', 'png'];
-
-    if(in_array($image_ext, $extensions)){
-        if($image_error === 0){
-            $image_name = uniqid('banner_', true) . '.' . $image_ext;
-            move_uploaded_file($image_tmp, '../assets/images/banner/' . $image_name);
-            $sql = "INSERT INTO banners (image) VALUES ('$image_name')";
+    if(in_array($image_mitra_ext, $extensions)){
+        if($image_mitra_error === 0){
+            $image_mitra_name = uniqid('mitra_', true) . '.' . $image_mitra_ext;
+            move_uploaded_file($image_mitra_tmp, '../assets/images/mitras/' . $image_mitra_name);
+            $sql = "INSERT INTO mitras (name, country, image) VALUES ('$name', '$country', '$image_mitra_name')";
             $query = mysqli_query($conn, $sql);
             if($query){
-                header("Location: banners.php");
+                header("Location: mitras.php");
                 exit();
             }else{
                 echo "<script>alert('Insert failed!')</script>";
@@ -44,7 +42,7 @@ if(isset($_POST['submit'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?> Insert | Rakushop Indonesia</title>
+    <title>Mitra Insert | Rakushop Indonesia</title>
     <link rel="shortcut icon" href="../assets/icons/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/admin.css">
@@ -59,15 +57,15 @@ if(isset($_POST['submit'])){
                 <i class="fas fa-tachometer-alt"></i>
                 Dashboard
             </a>
-            <a href="banners.php" class="active">
+            <a href="banners.php">
                 <i class="fas fa-image"></i>
                 Banners
             </a>
-            <a href="games.php" <?= basename($_SERVER['PHP_SELF']) == 'games.php' ? 'class="active"' : ''; ?>>
+            <a href="games.php">
                 <i class="fas fa-gamepad"></i>
                 Games
             </a>
-            <a href="ewallets.php" <?= basename($_SERVER['PHP_SELF']) == 'ewallets.php' ? 'class="active"' : ''; ?>>
+            <a href="ewallets.php">
                 <i class="fas fa-wallet"></i>
                 E-Wallets
             </a>
@@ -77,11 +75,11 @@ if(isset($_POST['submit'])){
             </a>
             <?php
             if($_SESSION['role'] == 'owner'){
-                echo '<a href="users.php" '.(basename($_SERVER['PHP_SELF']) == 'users.php' ? 'class="active"' : '').'>
+                echo '<a href="users.php">
                     <i class="fas fa-users"></i>
                     Users
                 </a>
-                <a href="mitras.php" '.(basename($_SERVER['PHP_SELF']) == 'mitras.php' ? 'class="active"' : '').'>
+                <a href="mitras.php" class="active">
                     <i class="fas fa-handshake"></i>
                     Mitras
                 </a>';
@@ -93,13 +91,23 @@ if(isset($_POST['submit'])){
             </a>
         </div>
         <div class="right">
-            <h2>Banners Insert</h2>
+            <h2>Mitra Insert</h2>
             <form action="" method="post" enctype="multipart/form-data">
                 <table>
                     <tr>
-                        <td>Image</td>
+                        <td>Name</td>
                         <td>:</td>
-                        <td><input type="file" name="image" id="image" accept="image/*" required></td>
+                        <td><input type="text" name="name" required></td>
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td>:</td>
+                        <td><input type="text" name="country" required></td>
+                    </tr>
+                    <tr>
+                        <td>Image Mitra</td>
+                        <td>:</td>
+                        <td><input type="file" name="image_mitra" accept="image/*" required></td>
                     </tr>
                     <tr>
                         <td colspan="3"><input type="submit" name="submit" value="Insert"></td>

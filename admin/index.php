@@ -18,6 +18,7 @@ if(!isset($_SESSION['email'])){
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/a_dashboard.css">
     <script src="https://kit.fontawesome.com/d9b2e6872d.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <?php include '../components/admin_header.php' ?>
@@ -48,6 +49,10 @@ if(!isset($_SESSION['email'])){
                 echo '<a href="users.php" '.(basename($_SERVER['PHP_SELF']) == 'users.php' ? 'class="active"' : '').'>
                     <i class="fas fa-users"></i>
                     Users
+                </a>
+                <a href="mitras.php" '.(basename($_SERVER['PHP_SELF']) == 'mitras.php' ? 'class="active"' : '').'>
+                    <i class="fas fa-handshake"></i>
+                    Mitras
                 </a>';
             }
             ?>
@@ -76,8 +81,112 @@ if(!isset($_SESSION['email'])){
                     <h1><?= mysqli_num_rows(mysqli_query($conn, "SELECT * FROM ewallets")) ?></h1>
                 </div>
             </div>
+            <div class="canvas-box">
+                <div class="canvas">
+                    <canvas id="myChart" height="200"></canvas>
+                </div>
+                <div class="canvas">
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
         </div>
     </main>
     <?php include '../components/admin_footer.php' ?>
 </body>
+<script>
+	var ctx = document.getElementById("myChart").getContext('2d');
+	var myChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: ["January", "February", "March", "April", "May", "June", "July", "August","September","October","November","December"],
+			datasets: [
+                <?php
+                    for ($year = 2022; $year <= 2023; $year++) {
+                        $lineColor = ($year == 2022) ? "#547AFF" : "#FFF383";
+                        echo "{ 
+                                label: '$year',
+                                data: [";
+                        for ($month = 1; $month <= 12; $month++) {
+                            $start_date = "$year-$month-01";
+                            $end_date = date("Y-m-t", strtotime($start_date));
+                            $query = mysqli_query($conn, "SELECT * FROM transactions WHERE created_at BETWEEN '$start_date' AND '$end_date'");
+                            echo mysqli_num_rows($query) . ",";
+                        }
+                        echo "],
+                                borderColor: '$lineColor',
+                                borderWidth: 1
+                            },";
+                    }
+                ?>
+            ]
+		},
+		options: {
+			scales: {
+                x: {
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.2)'
+                    },
+                    ticks: {
+                        color: 'white'
+                    }
+                },
+                y: {
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.2)'
+                    },
+                    ticks: {
+                        color: 'white'
+                    }
+                },
+				yAxes: [{
+					ticks: {
+						beginAtZero:true
+					}
+				}]
+			},
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Total Transactions',
+                    font: {
+                        size: 16,
+                        weight: 'bold',
+                    },
+                    color: 'white'
+                }
+            }
+		}
+	});
+
+    var ctx2 = document.getElementById("myChart2").getContext('2d');
+    var myChart2 = new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: ["Pending", "Success", "Failed"],
+            datasets: [{
+                data: [
+                    <?= mysqli_num_rows(mysqli_query($conn, "SELECT * FROM transactions WHERE status='pending'")) ?>,
+                    <?= mysqli_num_rows(mysqli_query($conn, "SELECT * FROM transactions WHERE status='success'")) ?>,
+                    <?= mysqli_num_rows(mysqli_query($conn, "SELECT * FROM transactions WHERE status='failed'")) ?>
+                ],
+                backgroundColor: ['#FFA500', '#008000', '#FF0000'],
+                borderColor: 'rgba(255, 255, 255, 0.2)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Transaction Status',
+                    font: {
+                        size: 16,
+                        weight: 'bold',
+                    },
+                    color: 'white'
+                }
+            }
+        }
+    });
+</script>
 </html>

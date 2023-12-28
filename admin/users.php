@@ -11,7 +11,17 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $result = mysqli_query($conn, "SELECT * FROM users WHERE id = $id");
     if ($result) {
-        
+        $user = mysqli_fetch_assoc($result);
+        $deleteQuery = "DELETE FROM users WHERE id = $id";
+        $deleteResult = mysqli_query($conn, $deleteQuery);
+        if ($deleteResult) {
+            header("Location: users.php");
+            exit();
+        } else {
+            echo "Gagal menghapus data user.";
+        }
+    } else {
+        echo "Data user tidak ditemukan.";
     }
 }
 
@@ -24,7 +34,7 @@ $title = ucwords(str_replace('_', ' ', $current_page));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?> | Rakushop Indonesia</title>
+    <title>Users | Rakushop Indonesia</title>
     <link rel="shortcut icon" href="../assets/icons/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/admin.css">
@@ -60,6 +70,10 @@ $title = ucwords(str_replace('_', ' ', $current_page));
                 echo '<a href="users.php" '.(basename($_SERVER['PHP_SELF']) == 'users.php' ? 'class="active"' : '').'>
                     <i class="fas fa-users"></i>
                     Users
+                </a>
+                <a href="mitras.php" '.(basename($_SERVER['PHP_SELF']) == 'mitras.php' ? 'class="active"' : '').'>
+                    <i class="fas fa-handshake"></i>
+                    Mitras
                 </a>';
             }
             ?>
@@ -88,6 +102,7 @@ $title = ucwords(str_replace('_', ' ', $current_page));
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Update Time</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -102,8 +117,9 @@ $title = ucwords(str_replace('_', ' ', $current_page));
                                 <td>{$user['name']}</td>
                                 <td>{$user['email']}</td>
                                 <td>{$user['role']}</td>
+                                <td>{$user['updated_at']}</td>
                                 <td>
-                                    <a href='users_u.php?id={$user['id']}'><i class='fas fa-edit'></i></a>
+                                    <a href='user_u.php?id={$user['id']}'><i class='fas fa-edit'></i></a>
                                     <a href='?id={$user['id']}'><i class='fas fa-trash'></i></a>
                                 </td>
                             </tr>";

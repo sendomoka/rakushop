@@ -15,3 +15,22 @@
     align-items: center;
     width: 100%;
 }
+.right .canvas-box {
+    display: flex;
+    flex-direction: row;
+}
+.right .canvas-box .canvas {
+    width: 100%;
+    max-width: 488px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+}
+.right .canvas-box .canvas:first-child {
+    margin-right: 10px;
+}
+.right .canvas-box .canvas:last-child {
+    height: 330px;
+    padding-left: 90px;
+}

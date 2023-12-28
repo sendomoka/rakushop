@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 27, 2023 at 12:35 PM
+-- Generation Time: Dec 28, 2023 at 01:40 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -175,7 +175,8 @@ INSERT INTO `mitras` (`id`, `name`, `country`, `image`, `created_at`, `updated_a
 (5, 'Sinarmas Multiartha', 'Indonesia', 'sinarmas.png', '2023-12-26 08:20:29', '2023-12-26 08:20:29'),
 (6, 'Telkomsel', 'Indonesia', 'telkomsel.png', '2023-12-26 08:20:29', '2023-12-26 08:20:29'),
 (7, 'Gojek', 'Indonesia', 'gojek.png', '2023-12-26 08:20:29', '2023-12-26 08:20:29'),
-(8, 'Bank Indonesia', 'Indonesia', 'bi.png', '2023-12-26 08:20:29', '2023-12-26 08:20:29');
+(8, 'Bank Indonesia', 'Indonesia', 'bi.png', '2023-12-26 08:20:29', '2023-12-26 08:20:29'),
+(10, 'test1', 'Malaysia', 'mitra_658cd13d850e34.95282603.png', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -208,7 +209,6 @@ INSERT INTO `orders` (`id`, `game_id`, `game_credits_id`, `ewallet_id`, `userid`
 (6, 4, 1, 1, 'cobaazur', 'China', 'cobaazur@gmail.com', '2023-12-26 09:53:03', '2023-12-26 09:53:03'),
 (7, 4, 2, 3, 'azurkonfirm', 'Europe', 'azurkonfirm@gmail.com', '2023-12-26 09:55:25', '2023-12-26 09:55:25'),
 (8, 4, 3, 4, 'azurbatal', 'Europe', 'azurbatal@gmail.com', '2023-12-26 09:58:30', '2023-12-26 09:58:30'),
-(9, 5, 2, 3, 'hicoba', 'America', 'hicoba@gmail.com', '2023-12-26 10:03:52', '2023-12-26 10:03:52'),
 (10, 1, 1, 1, 'jehian', 'Asia', 'jehian@gmail.com', '2023-12-26 17:09:43', '2023-12-26 17:09:43'),
 (11, 1, 5, 5, 'hariini', 'Asia', 'hariini@gmail.com', '2023-12-27 03:03:28', '2023-12-27 03:03:28'),
 (12, 3, 2, 3, 'valojir', 'America', 'valojir@gmail.com', '2023-12-27 04:38:42', '2023-12-27 04:38:42'),
@@ -243,7 +243,6 @@ INSERT INTO `transactions` (`id`, `order_id`, `phone_number`, `status`, `created
 (4, 6, NULL, 'pending', '2023-12-26 09:53:03', '2023-12-26 09:53:03'),
 (5, 7, NULL, 'pending', '2023-12-26 09:55:25', '2023-12-26 09:55:25'),
 (6, 8, NULL, 'pending', '2023-12-26 09:58:30', '2023-12-26 09:58:30'),
-(7, 9, NULL, 'pending', '2023-12-26 10:03:52', '2023-12-26 10:03:52'),
 (8, 10, NULL, 'pending', '2023-12-26 17:09:43', '2023-12-26 17:09:43'),
 (9, 11, '85155433460', 'success', '2023-12-27 03:03:28', '2023-12-27 03:03:28'),
 (10, 12, '85155432840', 'success', '2023-12-27 04:38:42', '2023-12-27 04:38:42'),
@@ -273,7 +272,6 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', 'admin', 'admin', '2023-12-26 08:20:29', '2023-12-26 08:20:29'),
 (2, 'Zaki Jamalinux', 'jamalinux@gmail.com', '123', 'owner', '2023-12-27 07:59:33', '2023-12-27 07:59:33');
 
 --
@@ -332,7 +330,7 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `transactions`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `order_id` (`order_id`);
+  ADD KEY `transactions_ibfk_1` (`order_id`);
 
 --
 -- Indexes for table `users`
@@ -354,7 +352,7 @@ ALTER TABLE `banners`
 -- AUTO_INCREMENT for table `ewallets`
 --
 ALTER TABLE `ewallets`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `faq`
@@ -366,7 +364,7 @@ ALTER TABLE `faq`
 -- AUTO_INCREMENT for table `games`
 --
 ALTER TABLE `games`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `game_credits`
@@ -378,7 +376,7 @@ ALTER TABLE `game_credits`
 -- AUTO_INCREMENT for table `mitras`
 --
 ALTER TABLE `mitras`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -426,7 +424,7 @@ ALTER TABLE `orders`
 -- Constraints for table `transactions`
 --
 ALTER TABLE `transactions`
-  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
+  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

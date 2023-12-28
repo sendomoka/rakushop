@@ -11,7 +11,21 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $result = mysqli_query($conn, "SELECT * FROM ewallets WHERE id = $id");
     if ($result) {
-        
+        $ewallet = mysqli_fetch_assoc($result);
+        $oldImagePath = '../assets/icons/ewallet/' . $ewallet['image'];
+        if (file_exists($oldImagePath)) {
+            unlink($oldImagePath);
+        }
+        $deleteQuery = "DELETE FROM ewallets WHERE id = $id";
+        $deleteResult = mysqli_query($conn, $deleteQuery);
+        if ($deleteResult) {
+            header("Location: ewallets.php");
+            exit();
+        } else {
+            echo "Gagal menghapus data e-wallet.";
+        }
+    } else {
+        echo "Data e-wallet tidak ditemukan.";
     }
 }
 
@@ -24,7 +38,7 @@ $title = ucwords(str_replace('_', ' ', $current_page));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?> | Rakushop Indonesia</title>
+    <title>Ewallets | Rakushop Indonesia</title>
     <link rel="shortcut icon" href="../assets/icons/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/admin.css">
@@ -60,6 +74,10 @@ $title = ucwords(str_replace('_', ' ', $current_page));
                 echo '<a href="users.php" '.(basename($_SERVER['PHP_SELF']) == 'users.php' ? 'class="active"' : '').'>
                     <i class="fas fa-users"></i>
                     Users
+                </a>
+                <a href="mitras.php" '.(basename($_SERVER['PHP_SELF']) == 'mitras.php' ? 'class="active"' : '').'>
+                    <i class="fas fa-handshake"></i>
+                    Mitras
                 </a>';
             }
             ?>
@@ -69,11 +87,11 @@ $title = ucwords(str_replace('_', ' ', $current_page));
             </a>
         </div>
         <div class="right">
-            <h2>Ewallets</h2>
+            <h2>E-Wallets</h2>
             <div class="menu">
-                <a class="plus" href="ewallets_i.php">
+                <a class="plus" href="ewallet_i.php">
                     <i class="fas fa-plus"></i>
-                    Add New Ewallet
+                    Add New E-Wallet
                 </a>
                 <div class="search">
                     <input id="search" type="text" autocomplete="off">
@@ -103,7 +121,7 @@ $title = ucwords(str_replace('_', ' ', $current_page));
                                 <td>{$ewallet['name']}</td>
                                 <td>{$ewallet['mitra_name']}</td>
                                 <td>
-                                    <a href='ewallets_u.php?id={$ewallet['id']}'><i class='fas fa-edit'></i></a>
+                                    <a href='ewallet_u.php?id={$ewallet['id']}'><i class='fas fa-edit'></i></a>
                                     <a href='?id={$ewallet['id']}'><i class='fas fa-trash'></i></a>
                                 </td>
                             </tr>";

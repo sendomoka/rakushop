@@ -9,23 +9,22 @@ if(!isset($_SESSION['email'])){
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $result = mysqli_query($conn, "SELECT * FROM games WHERE id = $id");
+    $result = mysqli_query($conn, "SELECT * FROM mitras WHERE id = $id");
     if ($result) {
-        $game = mysqli_fetch_assoc($result);
-        $oldCoverPath = '../assets/images/games/' . $game['cover'];
-        if (file_exists($oldCoverPath)) {
-            unlink($oldCoverPath);
-        }
-        $deleteQuery = "DELETE FROM games WHERE id = $id";
-        $deleteResult = mysqli_query($conn, $deleteQuery);
-        if ($deleteResult) {
-            header("Location: games.php");
+        $mitra = mysqli_fetch_assoc($result);
+        $image = $mitra['image'];
+        $sql = "DELETE FROM mitras WHERE id = $id";
+        $query = mysqli_query($conn, $sql);
+        if ($query) {
+            unlink("../assets/images/mitras/$image");
+            header("Location: mitras.php");
             exit();
         } else {
-            echo "Gagal menghapus data game.";
+            echo "<script>alert('Delete failed!')</script>";
         }
     } else {
-        echo "Data game tidak ditemukan.";
+        header("Location: mitras.php");
+        exit();
     }
 }
 
@@ -38,7 +37,7 @@ $title = ucwords(str_replace('_', ' ', $current_page));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?> | Rakushop Indonesia</title>
+    <title>Mitras | Rakushop Indonesia</title>
     <link rel="shortcut icon" href="../assets/icons/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/admin.css">
@@ -71,11 +70,11 @@ $title = ucwords(str_replace('_', ' ', $current_page));
             </a>
             <?php
             if($_SESSION['role'] == 'owner'){
-                echo '<a href="users.php" '.(basename($_SERVER['PHP_SELF']) == 'users.php' ? 'class="active"' : '').'>
+                echo '<a href="users.php">
                     <i class="fas fa-users"></i>
                     Users
                 </a>
-                <a href="mitras.php" '.(basename($_SERVER['PHP_SELF']) == 'mitras.php' ? 'class="active"' : '').'>
+                <a href="mitras.php" class="active">
                     <i class="fas fa-handshake"></i>
                     Mitras
                 </a>';
@@ -87,11 +86,11 @@ $title = ucwords(str_replace('_', ' ', $current_page));
             </a>
         </div>
         <div class="right">
-            <h2>Games</h2>
+            <h2>Mitras</h2>
             <div class="menu">
-                <a class="plus" href="game_i.php">
+                <a class="plus" href="mitra_i.php">
                     <i class="fas fa-plus"></i>
-                    Add New Game
+                    Add New Mitra
                 </a>
                 <div class="search">
                     <input id="search" type="text" autocomplete="off">
@@ -103,28 +102,28 @@ $title = ucwords(str_replace('_', ' ', $current_page));
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Cover</th>
                             <th>Name</th>
-                            <th>Mitra</th>
-                            <th>Credit Name</th>
+                            <th>Country</th>
+                            <th>Image</th>
+                            <th>Update Time</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $no = 1;
-                        $games = mysqli_query($conn, "SELECT games.*, mitras.name AS mitra_name FROM games INNER JOIN mitras ON games.mitra_id = mitras.id");
-                        while ($game = mysqli_fetch_assoc($games)) {
+                        $mitras = mysqli_query($conn, "SELECT * FROM mitras");
+                        while ($mitra = mysqli_fetch_assoc($mitras)) {
                             echo "
                             <tr>
                                 <td>$no</td>
-                                <td><img src='../assets/images/games/{$game['cover']}' alt='cover'></td>
-                                <td>{$game['name']}</td>
-                                <td>{$game['mitra_name']}</td>
-                                <td>{$game['credit_name']}</td>
+                                <td>{$mitra['name']}</td>
+                                <td>{$mitra['country']}</td>
+                                <td><img src='../assets/images/mitras/{$mitra['image']}' alt='ewallet'></td>
+                                <td>{$mitra['updated_at']}</td>
                                 <td>
-                                    <a href='game_u.php?id={$game['id']}'><i class='fas fa-edit'></i></a>
-                                    <a href='?id={$game['id']}'><i class='fas fa-trash'></i></a>
+                                    <a href='mitra_u.php?id={$mitra['id']}'><i class='fas fa-edit'></i></a>
+                                    <a href='?id={$mitra['id']}'><i class='fas fa-trash'></i></a>
                                 </td>
                             </tr>";
                             $no++;
@@ -143,7 +142,7 @@ $title = ucwords(str_replace('_', ' ', $current_page));
             var searchText = $(this).val();
             $.ajax({
                 type: "POST",
-                url: "game_s.php",
+                url: "mitra_s.php",
                 data: { search: searchText },
                 success: function(response) {
                     $(".table-container table tbody").html(response);

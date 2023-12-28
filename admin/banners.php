@@ -74,6 +74,10 @@ $title = ucwords(str_replace('_', ' ', $current_page));
                 echo '<a href="users.php" '.(basename($_SERVER['PHP_SELF']) == 'users.php' ? 'class="active"' : '').'>
                     <i class="fas fa-users"></i>
                     Users
+                </a>
+                <a href="mitras.php" '.(basename($_SERVER['PHP_SELF']) == 'mitras.php' ? 'class="active"' : '').'>
+                    <i class="fas fa-handshake"></i>
+                    Mitras
                 </a>';
             }
             ?>

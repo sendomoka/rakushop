@@ -11,7 +11,17 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $result = mysqli_query($conn, "SELECT * FROM orders WHERE id = $id");
     if ($result) {
-        
+        $order = mysqli_fetch_assoc($result);
+        $deleteQuery = "DELETE FROM orders WHERE id = $id";
+        $deleteResult = mysqli_query($conn, $deleteQuery);
+        if ($deleteResult) {
+            header("Location: orders.php");
+            exit();
+        } else {
+            echo "Gagal menghapus data order.";
+        }
+    } else {
+        echo "Data order tidak ditemukan.";
     }
 }
 
@@ -24,7 +34,7 @@ $title = ucwords(str_replace('_', ' ', $current_page));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?> | Rakushop Indonesia</title>
+    <title>Orders | Rakushop Indonesia</title>
     <link rel="shortcut icon" href="../assets/icons/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/admin.css">
@@ -60,6 +70,10 @@ $title = ucwords(str_replace('_', ' ', $current_page));
                 echo '<a href="users.php" '.(basename($_SERVER['PHP_SELF']) == 'users.php' ? 'class="active"' : '').'>
                     <i class="fas fa-users"></i>
                     Users
+                </a>
+                <a href="mitras.php" '.(basename($_SERVER['PHP_SELF']) == 'mitras.php' ? 'class="active"' : '').'>
+                    <i class="fas fa-handshake"></i>
+                    Mitras
                 </a>';
             }
             ?>
@@ -86,13 +100,14 @@ $title = ucwords(str_replace('_', ' ', $current_page));
                             <th>Game</th>
                             <th>Item</th>
                             <th>E-Wallet</th>
+                            <th>Update Time</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $no = 1;
-                        $orders = mysqli_query($conn, "SELECT od.*, g.name AS game_name, c.amount AS cred_amount, c.price AS cred_price, e.name AS ewallet FROM orders od JOIN games g ON od.game_id = g.id JOIN game_credits c ON od.game_credits_id = c.id JOIN ewallets e ON od.ewallet_id = e.id");
+                        $orders = mysqli_query($conn, "SELECT od.*, g.name AS game_name, c.amount AS cred_amount, c.price AS cred_price, e.name AS ewallet FROM orders od JOIN games g ON od.game_id = g.id JOIN game_credits c ON od.game_credits_id = c.id JOIN ewallets e ON od.ewallet_id = e.id ORDER BY od.updated_at DESC");
                         while ($order = mysqli_fetch_assoc($orders)) {
                             echo "
                             <tr>
@@ -102,8 +117,9 @@ $title = ucwords(str_replace('_', ' ', $current_page));
                                 <td>{$order['game_name']}</td>
                                 <td>{$order['cred_amount']} | {$order['cred_price']}</td>
                                 <td>{$order['ewallet']}</td>
+                                <td>{$order['updated_at']}</td>
                                 <td>
-                                    <a href='orders_u.php?id={$order['id']}'><i class='fas fa-edit'></i></a>
+                                    <a href='order_u.php?id={$order['id']}'><i class='fas fa-edit'></i></a>
                                     <a href='?id={$order['id']}'><i class='fas fa-trash'></i></a>
                                 </td>
                             </tr>";

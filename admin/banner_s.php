@@ -14,7 +14,7 @@ if (mysqli_num_rows($result) > 0) {
             <td><img src='../assets/images/banner/{$banner['image']}' alt='{$banner['image']}'></td>
             <td>
                 <a href='banners_u.php?id={$banner['id']}'><i class='fas fa-edit'></i></a>
-                <a href='banners_d.php?id={$banner['id']}'><i class='fas fa-trash'></i></a>
+                <a href='?id={$banner['id']}'><i class='fas fa-trash'></i></a>
             </td>
         </tr>";
         $no++;

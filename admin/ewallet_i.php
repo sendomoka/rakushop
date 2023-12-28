@@ -6,36 +6,39 @@ if(!isset($_SESSION['email'])){
     header("Location: ../login.php");
     exit();
 }
-$current_page = basename($_SERVER['PHP_SELF']);
-$current_page = str_replace('.php', '', $current_page);
-$title = ucwords(str_replace('_', ' ', $current_page));
 
 if(isset($_POST['submit'])){
+    $name = $_POST['name'];
+    $mitra = $_POST['mitras'];
     $image = $_FILES['image']['name'];
-    $image_tmp = $_FILES['image']['tmp_name'];
-    $image_size = $_FILES['image']['size'];
-    $image_error = $_FILES['image']['error'];
-    $image_type = $_FILES['image']['type'];
-    $image_ext = strtolower(end(explode('.', $image)));
-    $extensions = ['jpg', 'jpeg', 'png'];
-
-    if(in_array($image_ext, $extensions)){
-        if($image_error === 0){
-            $image_name = uniqid('banner_', true) . '.' . $image_ext;
-            move_uploaded_file($image_tmp, '../assets/images/banner/' . $image_name);
-            $sql = "INSERT INTO banners (image) VALUES ('$image_name')";
-            $query = mysqli_query($conn, $sql);
-            if($query){
-                header("Location: banners.php");
-                exit();
-            }else{
-                echo "<script>alert('Insert failed!')</script>";
+    $tmp = $_FILES['image']['tmp_name'];
+    $path = "../assets/icons/ewallet/".$image;
+    $ext = pathinfo($image, PATHINFO_EXTENSION);
+    if($ext == 'jpg' || $ext == 'png' || $ext == 'jpeg'){
+        if(move_uploaded_file($tmp, $path)){
+            $sql = "INSERT INTO ewallets (name, mitra_id, image) VALUES ('$name', '$mitra', '$image')";
+            if(mysqli_query($conn, $sql)){
+                echo "<script>alert('E-Wallet berhasil ditambahkan!');
+                window.onload = function() {
+                    window.location.href = 'ewallets.php';
+                };
+                </script>";
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
-        }else{
-            echo "<script>alert('Image error!')</script>";
+        } else {
+            echo "<script>alert('Gambar gagal diupload!');
+            window.onload = function() {
+                window.location.href = 'ewallets.php';
+            };
+            </script>";
         }
-    }else{
-        echo "<script>alert('Image type not allowed!')</script>";
+    } else {
+        echo "<script>alert('Ekstensi gambar yang diperbolehkan hanya jpg, jpeg, dan png!');
+        window.onload = function() {
+            window.location.href = 'ewallets.php';
+        };
+        </script>";
     }
 }
 ?>
@@ -44,7 +47,7 @@ if(isset($_POST['submit'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?> Insert | Rakushop Indonesia</title>
+    <title>E-Wallets Insert | Rakushop Indonesia</title>
     <link rel="shortcut icon" href="../assets/icons/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/admin.css">
@@ -59,15 +62,15 @@ if(isset($_POST['submit'])){
                 <i class="fas fa-tachometer-alt"></i>
                 Dashboard
             </a>
-            <a href="banners.php" class="active">
+            <a href="banners.php">
                 <i class="fas fa-image"></i>
                 Banners
             </a>
-            <a href="games.php" <?= basename($_SERVER['PHP_SELF']) == 'games.php' ? 'class="active"' : ''; ?>>
+            <a href="games.php">
                 <i class="fas fa-gamepad"></i>
                 Games
             </a>
-            <a href="ewallets.php" <?= basename($_SERVER['PHP_SELF']) == 'ewallets.php' ? 'class="active"' : ''; ?>>
+            <a href="ewallets.php" class="active">
                 <i class="fas fa-wallet"></i>
                 E-Wallets
             </a>
@@ -93,11 +96,31 @@ if(isset($_POST['submit'])){
             </a>
         </div>
         <div class="right">
-            <h2>Banners Insert</h2>
+            <h2>E-Wallet Insert</h2>
             <form action="" method="post" enctype="multipart/form-data">
                 <table>
                     <tr>
-                        <td>Image</td>
+                        <td>Name</td>
+                        <td>:</td>
+                        <td><input type="text" name="name" required></td>
+                    </tr>
+                    <tr>
+                        <td>Mitra</td>
+                        <td>:</td>
+                        <td>
+                            <select name="mitras" required>
+                                <option value="" selected disabled>Pilih Mitra</option>
+                                <?php
+                                $querym = mysqli_query($conn, "SELECT * FROM mitras");
+                                while ($data = mysqli_fetch_array($querym)) {
+                                    echo "<option value='$data[id]'>$data[name]</option>";
+                                }
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Image E-Wallet</td>
                         <td>:</td>
                         <td><input type="file" name="image" id="image" accept="image/*" required></td>
                     </tr>
